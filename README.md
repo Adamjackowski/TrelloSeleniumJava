@@ -24,10 +24,10 @@ Automated tests
 
 ##  Storage of login details 
 
-### 1 - The config.json file
+### 1 - The testData.json file
 
-1. Config file json should be in the root project folder\artifact\src\test\java\testPackage.
-2. The config.json file should contain the following fields (values must be completed with valid data).
+1. testData.json file json should be in the root project folder\artifact\src\test\java\testPackage.
+2. The testData.json file should contain the following fields (values must be completed with valid data).
 
 ```
 {
