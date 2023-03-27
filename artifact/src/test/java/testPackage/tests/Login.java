@@ -1,16 +1,12 @@
 package testPackage.tests;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import testPackage.pages.AfterLogoutPage;
@@ -21,13 +17,14 @@ import testPackage.pages.WelcomePage;
 public class Login extends TestBase {
 
     public JSONObject  passes;
+    
 
     @BeforeMethod
     public void setUpTestData() throws IOException, ParseException
     {
         JSONParser jsonParser = new JSONParser();
         String a = System.getProperty("user.dir");
-        String b = "\\artifact\\src\\test\\java\\testPackage\\testData.json";
+        String b = "\\src\\test\\java\\testPackage\\testData.json";
         String c = a + b;
         FileReader reader = new FileReader(c);
         this.passes = (JSONObject) jsonParser.parse(reader);
@@ -48,6 +45,8 @@ public class Login extends TestBase {
         mainPage.logout();
         AfterLogoutPage afterLogoutPage = new AfterLogoutPage(this.driver);
         afterLogoutPage.isDisplayed();
+        afterLogoutPage.logout();
+        welcomePage.isDisplayed();
     }
 
     @Test
@@ -59,8 +58,8 @@ public class Login extends TestBase {
         welcomePage.isDisplayed();
         welcomePage.login();
         loginPage.isDisplayed();
-        loginPage.login("","");
-        loginPage.isDisplayed();
+        loginPage.login("fake@fake.com","fake");
+        loginPage.isLoginFailed();
     }
 }
 

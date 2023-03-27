@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
 
@@ -19,15 +21,24 @@ public class LoginPage extends BasePage {
     private WebElement password;
 
     @FindBy(how = How.ID, using = "login")
+    private WebElement proceedLogin;
+
+    @FindBy(how = How.ID, using = "login-submit")
     private WebElement login;
-    
+
+    @FindBy(how = How.ID, using = "login")
+    private WebElement loginAgain;
+
+    @FindBy(how = How.ID, using = "error")
+    private WebElement loginFailedError;
 
 
-    
     public WebDriver driver;
+    public static Boolean loginForFirstTime = true;
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -38,11 +49,13 @@ public class LoginPage extends BasePage {
             } 
         });
     }
-
+    public Boolean isLoginFailed() {
+       return this.loginFailedError.isDisplayed();
+    }
     public boolean allElements()
     {
         List<WebElement> elements = new ArrayList<WebElement>();
-        elements.addAll(Arrays.asList(this.email, this.password, this.login));
+        elements.addAll(Arrays.asList(this.email));
         for (WebElement element : elements) {
             if (!element.isDisplayed())
             {
@@ -55,7 +68,19 @@ public class LoginPage extends BasePage {
     public void login(String login, String password)
     {
         this.email.sendKeys(login);
+        this.proceedLogin.click();
+        WebDriverWait wait = new WebDriverWait(this.driver, 20);
+        wait.until(ExpectedConditions.visibilityOf(this.password));
         this.password.sendKeys(password);
-        this.login.click();
+        if (loginForFirstTime == true)
+        {
+            this.login.click();
+            loginForFirstTime = false;
+        }
+        else
+        {
+            this.loginAgain.click();
+        }
+        
     }
 }

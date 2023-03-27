@@ -14,10 +14,12 @@ import org.openqa.selenium.support.PageFactory;
 
 public class MainPage extends BasePage {
 
-    @FindBy(how = How.CSS, using = "span._24AWINHReYjNBf")
+    @FindBy(how = How.CSS, using = ".DweEFaF5owOe02")
     private WebElement logo;
 
+    @FindBy(how = How.CSS, using = ".JaxGrNSZxJ4ghJ > ul:nth-child(7) > li:nth-child(2) > button:nth-child(1) > span:nth-child(1)")
     private WebElement logout;
+
 
 
     public MainPage(WebDriver driver) {
@@ -50,15 +52,6 @@ public class MainPage extends BasePage {
     public void logout()
     {
         this.logo.click();
-       
-        this.wait.until(new Function<WebDriver, Boolean>() {       
-            public Boolean apply(WebDriver driver) { 
-            return driver.findElements(By.cssSelector("span._1uK2vQ_aMRS2NU")).size() == 8;
-            } 
-        });
-
-        List <WebElement> buttons = this.driver.findElements(By.cssSelector("span._1uK2vQ_aMRS2NU"));
-        this.logout = buttons.get(7);
         this.logout.click();
     }
 }

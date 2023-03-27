@@ -12,8 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AfterLogoutPage extends BasePage {
 
-    @FindBy(how = How.CSS, using = "a.global-header-section-button")
-    private WebElement login;
+    @FindBy(how = How.CSS, using = ".css-178ag6o")
+    private WebElement confirmLogout;
 
     public WebDriver driver;
 
@@ -33,7 +33,7 @@ public class AfterLogoutPage extends BasePage {
     public boolean allElements()
     {
         List<WebElement> elements = new ArrayList<WebElement>();
-        elements.addAll(Arrays.asList(this.login));
+        elements.addAll(Arrays.asList(this.confirmLogout));
         for (WebElement element : elements) {
             if (!element.isDisplayed())
             {
@@ -44,4 +44,8 @@ public class AfterLogoutPage extends BasePage {
 
     }
 
+    public void logout()
+    {
+        this.confirmLogout.click();
+    }
 }

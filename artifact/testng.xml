@@ -3,9 +3,9 @@
  
 <suite name="TrelloTestsChrome">
     <parameter name="browser" value="Chrome" />
-    <test name="ProperLoginTest">
+    <test name="TestLogin">
         <classes>
-            <class name="Login"/>
+            <class name="testPackage.tests.Login"/>
         </classes>
     </test>
 </suite>

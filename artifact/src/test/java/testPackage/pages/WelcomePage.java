@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class WelcomePage extends BasePage {
 
-    @FindBy(how = How.CSS, using = "a.btn.btn-sm.btn-link.text-white")
+    @FindBy(how = How.CSS, using = "a.Buttonsstyles__Button-sc-1jwidxo-0:nth-child(1)")
     private WebElement loginButton;
 
     public WebDriver driver;
