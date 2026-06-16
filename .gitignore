@@ -1,3 +1,13 @@
 /.project
 .vscode/*
 *.log
+
+# Real login credentials — never commit; use testData.example.json as a template
+artifact/src/test/java/testPackage/testData.json
+testData.json
+
+# Build output
+target/
+
+# OS cruft
+.DS_Store
